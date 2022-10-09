@@ -10,9 +10,11 @@ mongoose.connect('mongodb+srv://bababibi:Dj61ZeBXIsjjKhgc@cluster0.tvpraqv.mongo
     .catch((e)=> console.log(e, 'Connexion failed à mongo'));
 
 const planteRoutes = require('./routes/planteRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 
 app.use('/api/v1/plante', planteRoutes);
+app.use('/api/v1/auth', userRoutes);
 
 
 module.exports = app;

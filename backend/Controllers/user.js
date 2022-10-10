@@ -6,6 +6,8 @@ exports.signup = (req, res, next) => {
     bcrypt.hash(req.query.password,10).then(hash=>{
         const user = new User({
             email:req.query.email,
+            firstName:req.query.firstName,
+            name:req.query.name,
             password:hash,
         });
         user.save()

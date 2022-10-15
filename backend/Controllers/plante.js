@@ -33,7 +33,7 @@ exports.update = (req,res) =>{
 }
 
 exports.getUserPlantes = (req,res) =>{
-    Plante.find({userId:req.params.id}).then((plantes)=>{
+    Plante.find({userId:getUserIdWithJwt(req)}).then((plantes)=>{
         res.status(200).json(plantes)
     }).catch(error=> res.status(400).json({error}))
 }

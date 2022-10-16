@@ -1,6 +1,7 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const {getUserIdWithJwt} = require("../Utils/getJwt");
 
 exports.signup = (req, res, next) => {
     bcrypt.hash(req.query.password,10).then(hash=>{
@@ -41,3 +42,9 @@ exports.login = (req, res, next) => {
         })
         .catch(error => res.status(500).json({ error }))
 };
+
+exports.update = (req, res, next) => {
+    User.updateOne({_id:getUserIdWithJwt(req)}, {...req.query, _id:req.params.id}).then(()=>{
+        res.status(200).json({message:'Utilisateur modifié'})
+    }).catch(error=> res.status(400).json({error}))
+}

@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const planteCtrl = require('../controllers/plante')
+const planteCtrl = require('../controllers/plante');
+const userCtrl = require('../controllers/user')
 
-router.get('/plantes', planteCtrl.getUserPlantes)
+router.patch('/', userCtrl.update);
+router.get('/plantes', planteCtrl.getUserPlantes);
 
 module.exports = router;
